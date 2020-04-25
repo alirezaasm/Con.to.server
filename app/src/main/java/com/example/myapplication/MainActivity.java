@@ -31,77 +31,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        editText=findViewById(R.id.editText);
-        Thread thread=new Thread(new Runnable() {
-
-            Handler handler =new Handler()
-            {
-                @Override
-                public void handleMessage(@NonNull Message msg) {
-                    super.handleMessage(msg);
-                    String content=(String) msg.getData().get("content");
-                    editText.setText(content);
-                }
-            };
-
-            @Override
-            public void run() {
-                String content=getdata();
-                android.os.Message message=new Message();
-                Bundle bundle=new Bundle();
-                bundle.putString("content",content);
-                message.setData(bundle);
-                handler.sendMessage(message);
-            }
-        });
-        thread.start();
-
-
-
-    }
-
-    public String getdata()
-    {
-        String content="";
-        HttpClient client =new DefaultHttpClient();
-        HttpGet getmethod=new HttpGet(url);
-        try
-        {
-            HttpResponse response=client.execute(getmethod);
-            content=inputStreamToString(response.getEntity().getContent());
-
-        }
-        catch(Exception e)
-        {
-
-        }
-        return  content;
-
-
-    }
-    public static  String inputStreamToString(InputStream stream)
-    {
-        BufferedReader reader =new BufferedReader(new InputStreamReader(stream));
-        StringBuilder sb=new StringBuilder();
-        String Line="";
-        try
-        {
-            while ((Line=reader.readLine())!=null)
-            {
-                sb.append(Line+"\n");
-
-
-            }
-            return sb.toString().trim();
-
-        }catch (Exception e)
-        {
-            Log.i("kirrrrrrrrrrrrrr",e.getMessage());
-        }
-
-
-
-        return null;
+        editText = findViewById(R.id.editText);
     }
 
     @Override
