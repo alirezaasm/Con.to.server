@@ -93,6 +93,7 @@ public class HttpParamsActivity extends AppCompatActivity {
         protected void onPostExecute(String result) {
             if(result == null) {
                 result = "null";
+
             }
             tv.setText(result);
 
